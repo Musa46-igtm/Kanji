@@ -1,0 +1,167 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --badge-outline: rgba(0, 0, 0, 0.05);
+
+  --opaque-button-border-intensity: -8;
+
+  --elevate-1: rgba(0, 0, 0, 0.03);
+  --elevate-2: rgba(0, 0, 0, 0.08);
+
+  /* Calm washi-like off-white background */
+  --background: 40 20% 97%;
+  /* Sumi ink foreground */
+  --foreground: 40 10% 12%;
+
+  --border: 40 15% 85%;
+  --input: 40 15% 85%;
+  --ring: 6 68% 49%;
+
+  --card: 40 25% 99%;
+  --card-foreground: 40 10% 12%;
+  --card-border: 40 15% 90%;
+
+  --popover: 40 25% 99%;
+  --popover-foreground: 40 10% 12%;
+  --popover-border: 40 15% 90%;
+
+  /* Vermilion ink seal primary */
+  --primary: 6 68% 49%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 40 15% 90%;
+  --secondary-foreground: 40 10% 15%;
+
+  --muted: 40 10% 93%;
+  --muted-foreground: 40 5% 45%;
+
+  --accent: 40 15% 92%;
+  --accent-foreground: 40 10% 15%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-serif: 'Crimson Text', serif;
+  --app-font-mono: 'Menlo', monospace;
+  
+  --radius: 0.25rem;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.dark {
+  --background: 40 10% 10%;
+  --foreground: 40 10% 90%;
+
+  --border: 40 10% 20%;
+  --input: 40 10% 20%;
+  --ring: 6 68% 49%;
+
+  --card: 40 10% 12%;
+  --card-foreground: 40 10% 90%;
+  --card-border: 40 10% 18%;
+
+  --popover: 40 10% 12%;
+  --popover-foreground: 40 10% 90%;
+  --popover-border: 40 10% 18%;
+
+  --primary: 6 60% 45%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 40 10% 18%;
+  --secondary-foreground: 40 10% 90%;
+
+  --muted: 40 10% 15%;
+  --muted-foreground: 40 5% 60%;
+
+  --accent: 40 10% 18%;
+  --accent-foreground: 40 10% 90%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .no-default-hover-elevate {}
+  .no-default-active-elevate {}
+
+  .hover-elevate:not(.no-default-hover-elevate) { position: relative; z-index: 0; }
+  .active-elevate:not(.no-default-active-elevate) { position: relative; z-index: 0; }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after {
+    content: ''; pointer-events: none; position: absolute; inset: 0px;
+    border-radius: inherit; z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+}
